@@ -64,11 +64,16 @@
         </a>
     </div>
     <script>
-        window.addEventListener('load', function() {
+        document.addEventListener('DOMContentLoaded', function() {
             var audio = document.getElementById('audio');
             audio.play();
             audio.controls = false;
         });
+
+        document.getElementById('audio').addEventListener('ended', function() {
+            this.currentTime = 0;
+            this.play();
+        }, false);
     </script>
 </body>
 </html>
