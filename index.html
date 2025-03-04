@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Темное Солнце</title>
+    <title>DARK SUN</title>
     <style>
         body {
             background-color: #1a1a1a;
@@ -66,14 +66,17 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             var audio = document.getElementById('audio');
-            audio.play();
             audio.controls = false;
-        });
+            var playPromise = audio.play();
 
-        document.getElementById('audio').addEventListener('ended', function() {
-            this.currentTime = 0;
-            this.play();
-        }, false);
+            if (playPromise !== undefined) {
+                playPromise.then(function() {
+                    console.log('Audio is playing');
+                }).catch(function(error) {
+                    console.log('Audio play was prevented:', error);
+                });
+            }
+        });
     </script>
 </body>
 </html>
